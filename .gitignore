@@ -1,0 +1,4 @@
+# Source archive with the full RASID code - never publish
+RASID/
+# Internal notes, not part of the site
+PUBLISH.md
