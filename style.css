@@ -1,5 +1,5 @@
 :root{--green:#104e3b;--green-2:#1c6b52;--gold:#b4872c;--gold-soft:#e3c27a;--ink:#192b24;--muted:#5d6f66;--paper:#f9faf6;--card:#ffffff;--line:#dfe6df;--radius:22px}
-*{box-sizing:border-box}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;scroll-padding-top:90px;overflow-x:clip}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Arabic",Tahoma,Arial,sans-serif;line-height:1.8;overflow-x:clip}
 a{color:inherit;text-decoration:none}
@@ -22,7 +22,6 @@ nav a:hover{color:var(--green)}
 
 /* Buttons */
 .button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 28px;border-radius:40px;font-weight:700;border:1.5px solid transparent;transition:transform .2s,background .2s}
-.button:hover{transform:translateY(-2px)}
 .primary{background:var(--green);color:#fff}
 .primary:hover{background:var(--green-2)}
 .ghost{color:var(--green);border-color:var(--line);background:var(--card)}
@@ -56,7 +55,6 @@ nav a:hover{color:var(--green)}
 /* Problem */
 .problem-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:44px}
 .problem-grid article{padding:28px 20px;border-radius:var(--radius);background:var(--card);border:1px solid var(--line);text-align:center;transition:border-color .25s,transform .25s}
-.problem-grid article:hover{border-color:var(--gold);transform:translateY(-3px)}
 .problem-grid svg{width:56px;height:56px;padding:13px;margin-bottom:14px;border-radius:50%;background:#fbf3e3;color:var(--gold)}
 .problem-grid h3{font-size:17px}
 
@@ -76,7 +74,6 @@ nav a:hover{color:var(--green)}
 .steps::before{content:"";position:absolute;top:34px;inset-inline:8%;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 16px);opacity:.6}
 .steps li{position:relative;text-align:center;padding:0 4px}
 .steps .icon{position:relative;z-index:1;width:68px;height:68px;margin:0 auto 16px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:2px solid var(--green);color:var(--green);transition:background .25s,color .25s}
-.steps li:hover .icon{background:var(--green);color:#fff}
 .steps p{color:var(--muted);margin-top:4px;font-size:15px}
 .banner{margin-top:56px;padding:24px;border-radius:var(--radius);border:1.5px solid var(--gold);background:#fbf3e3;text-align:center;font-size:clamp(18px,2vw,24px);font-weight:700;color:var(--green)}
 
@@ -85,12 +82,11 @@ nav a:hover{color:var(--green)}
 .arch>*{max-width:1320px;margin-inline:auto}
 .arch .kicker{color:var(--gold-soft)}
 .arch-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:0;margin-top:52px}
-.arch-col{align-self:stretch;display:grid;gap:10px;align-content:start;padding:18px;border-radius:20px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(2px)}
+.arch-col{align-self:stretch;display:grid;gap:10px;align-content:start;padding:18px;border-radius:20px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.1)}
 .arch-col.arch-core{align-content:center;border-color:rgba(227,194,122,.35)}
 .arch-label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;color:var(--gold-soft);margin-bottom:4px}
 .arch-label b{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:12px;background:rgba(227,194,122,.14);border:1px solid rgba(227,194,122,.3);direction:ltr}
 .node{display:flex;align-items:flex-start;gap:12px;padding:14px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);transition:border-color .25s,background .25s,transform .25s}
-.node:hover{border-color:rgba(227,194,122,.5);background:rgba(255,255,255,.09);transform:translateY(-2px)}
 .node svg{flex:none;width:40px;height:40px;padding:9px;border-radius:12px;background:rgba(227,194,122,.13);color:var(--gold-soft)}
 .node h3{font-size:15.5px;line-height:1.5}
 .node p{font-size:13px;color:rgba(255,255,255,.62);line-height:1.6;margin-top:2px}
@@ -166,7 +162,6 @@ nav a:hover{color:var(--green)}
 .members li{display:grid;justify-items:center;align-content:start;gap:12px;min-width:140px;white-space:nowrap}
 .avatar{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;font-size:36px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--green),var(--green-2));box-shadow:0 0 0 5px var(--paper),0 0 0 7px var(--gold-soft);transition:transform .25s}
 .avatar svg{width:46%;height:46%;stroke-width:1.8}
-.members li:hover .avatar{transform:translateY(-4px) rotate(-4deg)}
 .avatar{position:relative}
 .member-link{display:grid;justify-items:center;gap:12px;border-radius:16px;transition:color .2s}
 .member-link:hover b{color:#0A66C2}
@@ -189,15 +184,23 @@ footer{display:flex;align-items:center;flex-wrap:wrap;gap:16px 30px;padding:30px
 .js .reveal.visible{opacity:1;transform:none}
 
 @keyframes drift{from{transform:scale(1)}to{transform:scale(1.03)}}
-@keyframes sway{from{filter:blur(5px) brightness(1)}to{filter:blur(7px) brightness(1.35)}}
+@keyframes sway{from{opacity:.7}to{opacity:1}}
 @keyframes bob{0%,100%{translate:0 0}50%{translate:0 -3px}}
 @keyframes alert-wave{0%{transform:scale(.8);opacity:.9}100%{transform:scale(3);opacity:0}}
-@keyframes alert-flash{50%{filter:brightness(1.35);box-shadow:0 0 30px var(--a),0 0 50px var(--a)}}
+@keyframes alert-flash{50%{transform:translate(-50%,-50%) scale(1.12)}}
 @keyframes flow-rtl{from{right:0;opacity:0}15%{opacity:1}85%{opacity:1}to{right:calc(100% - 8px);opacity:0}}
 @keyframes flow-ltr{from{left:0;opacity:0}15%{opacity:1}85%{opacity:1}to{left:calc(100% - 8px);opacity:0}}
 @keyframes flow-down{from{top:0;opacity:0}15%{opacity:1}85%{opacity:1}to{top:calc(100% - 8px);opacity:0}}
 @keyframes core-pulse{from{opacity:.9;transform:scale(1)}to{opacity:0;transform:scale(1.08)}}
 @keyframes ping-red{0%{box-shadow:0 0 0 0 rgba(214,40,40,.6)}70%,100%{box-shadow:0 0 0 9px rgba(214,40,40,0)}}
+@media(hover:hover){
+  .button:hover{transform:translateY(-2px)}
+  .problem-grid article:hover{border-color:var(--gold);transform:translateY(-3px)}
+  .steps li:hover .icon{background:var(--green);color:#fff}
+  .node:hover{border-color:rgba(227,194,122,.5);background:rgba(255,255,255,.09);transform:translateY(-2px)}
+  .members li:hover .avatar{transform:translateY(-4px) rotate(-4deg)}
+}
+.paused,.paused *,.paused ::before,.paused ::after{animation-play-state:paused!important}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pop{50%{transform:scale(1.06)}}
 @keyframes float{50%{transform:translateY(-8px)}}
@@ -219,6 +222,9 @@ footer{display:flex;align-items:center;flex-wrap:wrap;gap:16px 30px;padding:30px
   .detect-cols{grid-template-columns:1fr}
 }
 @media(max-width:700px){
+  header{backdrop-filter:none;background:var(--paper)}
+  .expo-map .photo.drift{animation:none}
+  .js .reveal{transform:translateY(14px);transition-duration:.45s}
   header{gap:14px}
   nav{display:none}
   .brand img{width:110px;height:48px}

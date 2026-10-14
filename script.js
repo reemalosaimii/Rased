@@ -109,3 +109,10 @@ if(expoMap){
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&pinnedId){pinnedId=null;hoverId=null;render()}});
 
 }
+
+/* Pause looping animations while their section is off screen, to keep scrolling smooth on phones. */
+if('IntersectionObserver' in window){
+  const animatedSections=[document.querySelector('.hero'),document.getElementById('architecture'),document.getElementById('map')].filter(Boolean);
+  const pauseObserver=new IntersectionObserver(entries=>{for(const entry of entries)entry.target.classList.toggle('paused',!entry.isIntersecting)},{rootMargin:'100px 0px'});
+  animatedSections.forEach(section=>pauseObserver.observe(section));
+}
