@@ -76,9 +76,6 @@ if(expoMap){
     pin.addEventListener('blur',()=>{if(!pinnedId){hoverId=null;render()}});
     pin.addEventListener('click',event=>{
       event.stopPropagation();pinnedId=pinnedId===zone.id?null:zone.id;hoverId=pinnedId;render();
-      /* On phones the map scrolls sideways: bring the tapped zone into view. */
-      const scroller=expoMap.closest('.map-scroll');
-      if(pinnedId&&scroller.scrollWidth>scroller.clientWidth){const box=scroller.getBoundingClientRect(),pinBox=pin.getBoundingClientRect();scroller.scrollBy({left:pinBox.left+pinBox.width/2-(box.left+box.width/2),behavior:reduceMotion?'auto':'smooth'})}
     });
     pinLayer.append(beams,pin);
     parts.set(zone.id,{shade,glow,beams,pin});
@@ -111,7 +108,4 @@ if(expoMap){
   expoMap.addEventListener('click',()=>{pinnedId=null;hoverId=null;render()});
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&pinnedId){pinnedId=null;hoverId=null;render()}});
 
-  /* On narrow screens the map scrolls sideways; start it centred. Scroll offsets are negative in right-to-left pages. */
-  const mapScroller=expoMap.closest('.map-scroll'),overflow=mapScroller.scrollWidth-mapScroller.clientWidth;
-  if(overflow>0)mapScroller.scrollLeft=(overflow/2)*(getComputedStyle(mapScroller).direction==='rtl'?-1:1);
 }
